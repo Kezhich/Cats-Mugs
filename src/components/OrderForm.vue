@@ -10,6 +10,7 @@
               class="main-contacts__input"
               placeholder="Full Name"
               id="name"
+              ref="name"
               required
             >
             <label for="name" class="main-contacts__label">Full name</label>
@@ -17,10 +18,11 @@
 
           <div class="main-contacts__group">
             <input
-              type="text"
+              type="email"
               class="main-contacts__input"
               placeholder="Email adress"
               id="email"
+              ref="email"
               required
             >
             <label for="email" class="main-contacts__label">Email adress</label>
@@ -32,12 +34,13 @@
               class="main-contacts__input"
               placeholder="Phone number"
               id="phone"
+              ref="phone"
               required
             >
             <label for="phone" class="main-contacts__label">Phone number</label>
           </div>
         </div>
-                <btn type="submit" btnColor="btn btn-large btn-buy" @click.native="closeModal()">
+                <btn type="submit" btnColor="btn btn-large btn-buy" @click.native="closeModal($event)">
           BUY
         </btn>
       </form>
@@ -62,8 +65,19 @@ export default {
   },
   methods: {
     ...mapActions(["showOrHiddenOrderModal"]),
-    closeModal() {
+    ...mapGetters(["getProductsInCart"]),
+    closeModal(event) {
+      event.preventDefault();
       this.showOrHiddenOrderModal();
+      var storage = this.getProductsInCart();
+      var form = {
+        name: this.$refs.name.value,
+        email: this.$refs.email.value,
+        phone: this.$refs.phone.value,
+        storage: storage
+      }
+      //тут аякс запрос
+      
     }
   }
 };

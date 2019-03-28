@@ -138,8 +138,8 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    ADD_PRODUCT: (state, product) => {
-      state.cartProducts.push(product);
+    ADD_PRODUCT: (state, product) => {     
+      state.cartProducts.push(product);      
     },
     REMOVE_PRODUCT: (state, index) => {
       state.cartProducts.splice(index, 1);
@@ -166,7 +166,11 @@ export default new Vuex.Store({
 
   actions: {
     addProduct: (context, product) => {
-      context.commit('ADD_PRODUCT', product);
+      if(context.state.cartProducts.indexOf(product) != -1){
+         context.state.cartProducts[context.state.cartProducts.indexOf(product)].amount++;
+      } else {
+        context.commit('ADD_PRODUCT', product);
+      }
     },
     removeProduct: (context, index) => {
       context.commit('REMOVE_PRODUCT', index);
@@ -187,6 +191,9 @@ export default new Vuex.Store({
       context.commit('INCREASE_AMOUNT', index);
     },
     decreaseAmount: (context, index) => {
+      if(context.state.cartProducts[index].amount == 1) {
+        return true;
+      }
       context.commit('DECREASE_AMOUNT', index);
     },
   }

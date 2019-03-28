@@ -4,8 +4,8 @@
     <div v-for="(product, index) in getProductsInCart"  :key="index" class="box-item">
       <img :src="product.image" alt="" class="item-thumb">
       <h3 class="item-name">{{ product.name }}</h3>
-      <span class="item-amount">Amount: 1</span>
-      <span class="item-price">R$ {{ product.price }}, 00</span>
+      <span class="item-amount">Amount: {{ product.amount }}</span>
+      <span class="item-price">R$ {{ product.price*product.amount }}, 00</span>
     </div>
     <div class="cart-info" v-if="hasProduct()">
       <span>Total: R$ {{ totalPrice() }}, 00</span>
@@ -35,8 +35,10 @@ export default {
       return this.getProductsInCart.length > 0;
     },
     totalPrice() {
-      return this.getProductsInCart.reduce((current, next) =>
-        current + next.price, 0);
+      return this.getProductsInCart.reduce(
+        (current, next) => current + (next.price)*next.amount,
+        0
+      );
     },
     showPopupCart() {
       this.showOrHiddenPopupCart();

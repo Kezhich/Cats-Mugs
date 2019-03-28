@@ -10,11 +10,6 @@
       </router-link>
       <div class="product-price">
         <span>$ {{ product.price }}, 00</span>
-        <div class="amount">
-          <a @click="decreaseCurrentAmount(index)">-</a>
-          {{product.amount}}
-          <a @click="increaseCurrentAmount(index)">+</a>
-        </div>
       </div>
 
       <btn btnColor="btn btn-large btn-sucess"
