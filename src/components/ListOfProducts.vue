@@ -9,8 +9,12 @@
         </h2>
       </router-link>
       <div class="product-price">
-        <span>R$ {{ product.price }}, 00</span>
-        <span>- {{ product.discount }}</span>
+        <span>$ {{ product.price }}, 00</span>
+        <div class="amount">
+          <a @click="decreaseCurrentAmount(index)">-</a>
+          {{product.amount}}
+          <a @click="increaseCurrentAmount(index)">+</a>
+        </div>
       </div>
 
       <btn btnColor="btn btn-large btn-sucess"
@@ -36,6 +40,8 @@ export default {
     ...mapActions([
       'addProduct',
       'currentProduct',
+      'increaseAmount',
+      'decreaseAmount',
     ]),
 
     addProductToCart(product) {
@@ -44,6 +50,12 @@ export default {
     addCurrentProduct(product) {
       this.currentProduct(product);
     },
+    increaseCurrentAmount(index) {
+      this.increaseAmount(index);
+    },
+    decreaseCurrentAmount(index) {
+      this.decreaseAmount(index);
+    }
   },
 };
 </script>

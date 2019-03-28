@@ -47,6 +47,14 @@ export default {
     background-color: #e74c3c;
   }
 
+  .btn-buy {
+    background-image: linear-gradient(to right, #ff7730, #ffb900);
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
   .btn img {
     max-width: 20px;
     margin-left: .5em;

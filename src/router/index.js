@@ -5,6 +5,7 @@ import AllMugs from '../components/AllMugs';
 import AllCats from '../components/AllCats';
 import Product from '../components/Product';
 import CartCheckout from '../components/CartCheckout';
+import OrderForm from '../components/OrderForm';
 
 Vue.use(Router);
 
@@ -35,5 +36,11 @@ export default new Router({
       name: 'Checkout',
       component: CartCheckout,
     },
+    {
+      path: '/buy',
+      name: 'Buy',
+      component: OrderForm,
+    },
+
   ],
 });

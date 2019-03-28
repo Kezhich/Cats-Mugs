@@ -13,7 +13,7 @@ export default new Vuex.Store({
         stars: 5,
         totalReviews: 230,
         details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
-        discount: 33
+        amount: 1,
       },
       {
         name: 'Myagkiy',
@@ -22,6 +22,7 @@ export default new Vuex.Store({
         stars: 3.4,
         totalReviews: 20,
         details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+        amount: 1,
       },
       {
         name: 'Grustniy',
@@ -30,6 +31,7 @@ export default new Vuex.Store({
         stars: 1,
         totalReviews: 1,
         details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+        amount: 1,
       },
       {
         name: 'Igriviy',
@@ -38,6 +40,7 @@ export default new Vuex.Store({
         stars: 4.4,
         totalReviews: 340,
         details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+        amount: 1,
       },
       {
         name: 'Spyashiy',
@@ -46,6 +49,7 @@ export default new Vuex.Store({
         stars: 3,
         totalReviews: 30,
         details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+        amount: 1,
       },
       {
         name: 'Oherevshiy',
@@ -54,6 +58,7 @@ export default new Vuex.Store({
         stars: 2,
         totalReviews: 248,
         details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+        amount: 1,
       },
     ],
 
@@ -65,6 +70,7 @@ export default new Vuex.Store({
         stars: 0,
         totalReviews: 0,
         details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+        amount: 1,
       },
       {
         name: 'S latte',
@@ -73,6 +79,7 @@ export default new Vuex.Store({
         stars: 1.5,
         totalReviews: 11,
         details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+        amount: 1,
       },
       {
         name: 'Serdechniy',
@@ -81,6 +88,7 @@ export default new Vuex.Store({
         stars: 1,
         totalReviews: 2,
         details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+        amount: 1,
       },
       {
         name: 'S potnimy noskami',
@@ -89,6 +97,7 @@ export default new Vuex.Store({
         stars: 5,
         totalReviews: 310,
         details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+        amount: 1,
       },
       {
         name: 'Vanilniy',
@@ -97,6 +106,7 @@ export default new Vuex.Store({
         stars: 2.9,
         totalReviews: 42,
         details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+        amount: 1,
       },
       {
         name: 'S lavandoy',
@@ -105,6 +115,7 @@ export default new Vuex.Store({
         stars: 0.5,
         totalReviews: 1,
         details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+        amount: 1,
       },
     ],
 
@@ -112,6 +123,7 @@ export default new Vuex.Store({
     currentProduct: {},
     showModal: false,
     showPopupCart: false,
+    showOrderModal: false,
   },
 
   getters: {
@@ -122,6 +134,7 @@ export default new Vuex.Store({
     getCurrentProduct: state => state.currentProduct,
     getShowModal: state => state.showModal,
     getPopupCart: state => state.showPopupCart,
+    getOrderModal: state => state.showOrderModal,
   },
 
   mutations: {
@@ -139,6 +152,15 @@ export default new Vuex.Store({
     },
     SHOW_POPUP_CART: (state) => {
       state.showPopupCart = !state.showPopupCart;
+    },
+    SHOW_ORDER_MODAL: (state) => {
+      state.showOrderModal = !state.showOrderModal;
+    },
+    INCREASE_AMOUNT: (state, index) => {
+      state.cartProducts[index].amount++;
+    },
+    DECREASE_AMOUNT: (state, index) => {
+      state.cartProducts[index].amount--;
     },
   },
 
@@ -158,5 +180,14 @@ export default new Vuex.Store({
     showOrHiddenPopupCart: (context) => {
       context.commit('SHOW_POPUP_CART');
     },
-  },
+    showOrHiddenOrderModal: (context) => {
+      context.commit('SHOW_ORDER_MODAL');
+    },
+    increaseAmount: (context, index) => {
+      context.commit('INCREASE_AMOUNT', index);
+    },
+    decreaseAmount: (context, index) => {
+      context.commit('DECREASE_AMOUNT', index);
+    },
+  }
 });
